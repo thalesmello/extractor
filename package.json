@@ -4,12 +4,17 @@
   "description": "Extracts information from a handful of documents and converts to json",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "author": "Thales Mello",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.16.2",
+    "base64-arraybuffer": "^0.1.5",
     "bluebird": "^3.5.0",
+    "body-parser": "^1.17.2",
+    "express": "^4.15.4",
     "get-emails": "^2.0.0",
     "get-urls": "^7.0.0",
     "is-email": "^1.0.0",

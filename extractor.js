@@ -1,6 +1,6 @@
 const { promisifyAll } = require('bluebird')
 const Promise = require('bluebird')
-const pdf2Text = require('pdf2text')
+const pdf2text = require('pdf2text')
 const getEmails = require('get-emails')
 const removePunctuation = require('remove-punctuation')
 const removeAccents = require('remove-accents')
@@ -22,40 +22,9 @@ const underisedLocations = [
   'ciencias'
 ]
 
-main().catch(err => {
-  console.log(err)
-  process.exit(1)
-})
-
-async function main () {
-  const files = [
-    './alan_henrique.pdf',
-    './ana_carolina.pdf',
-    './curriculo2.pdf',
-    './giovani.pdf',
-    './ricardo.pdf',
-    './ThalesMello.pdf',
-    './Renan Jacomassi - CV (Port.) (1).pdf',
-    "./iago-calmon-angeli.pdf"
-  ]
-
-  for (const file of files) {
-    console.log(file)
-
-    try {
-      const filepath = join(__dirname, file)
-      const buffer = await readFileAsync(filepath)
-      const answer = await parseResume({ buffer, filetype: 'pdf' })
-      console.log(answer)
-    } catch (err) {
-      console.log(err)
-    }
-  }
-}
-
 async function extract (buffer, filetype) {
   if (filetype === 'pdf') {
-    const pages = await pdf2Text(buffer)
+    const pages = await pdf2text(buffer)
 
     const text = pages.reduce(concat).join(' ')
     const parts = _.chain(pages).reduce(concat)
@@ -82,7 +51,6 @@ async function extract (buffer, filetype) {
 
 async function parseResume ({ buffer, filetype }) {
   const { parts, text } = await extract(buffer, filetype)
-
 
   const emails = getEmails(text)
   let urls = text.match(urlRegex({ strict: false })) || []
