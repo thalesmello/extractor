@@ -74,14 +74,14 @@ async function parseResume ({ buffer, filetype }) {
     })
     .first()
 
-  if (!name && isEmpty(emails) && isEmpty(urls)) {
-    throw new Error('Could not parse resume')
-  }
-
   const skills = tags.filter(tag => {
     const regex = new RegExp(tag, 'i')
     return regex.test(text)
   })
+
+  if (!name && isEmpty(emails) && isEmpty(urls) && isEmpty(skills)) {
+    throw new Error('Could not parse resume')
+  }
 
   return { name, emails: Array.from(emails), urls, skills }
 }
