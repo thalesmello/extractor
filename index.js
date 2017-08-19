@@ -3,9 +3,10 @@ const { parseResume } = require('./extractor')
 const bodyParser = require('body-parser')
 const { decode } = require('base64-arraybuffer')
 const axios = require('axios')
+const mailer = require('./mailer')
 const app = express()
 
-const { NODE_ENV = 'development', PORT } = process.env
+const { NODE_ENV = 'development', PORT, SMTP_SECRET_TOKEN } = process.env
 
 const config = {
   development: { port: 3000 },
@@ -50,6 +51,18 @@ app.post('/forward-email', handle(async (req, res) => {
     content,
     from
   })
+
+  res.send({ status: 'ok' })
+}))
+
+app.post('/mail', handle(async (req, res) => {
+  const { token, from, to, subject, html } = request.body
+
+  if(token !== SMTP_SECRET_TOKEN) {
+    throw new Error('Invalid token')
+  }
+
+  await mailer.sendMailAsync({ from, to, subject, html })
 
   res.send({ status: 'ok' })
 }))
