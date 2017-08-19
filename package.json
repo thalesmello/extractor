@@ -1,5 +1,8 @@
 {
   "name": "extractor",
+  "engines": {
+    "node": ">= 7.6.0"
+  },
   "version": "1.0.0",
   "description": "Extracts information from a handful of documents and converts to json",
   "main": "index.js",
