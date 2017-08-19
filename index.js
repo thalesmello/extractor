@@ -56,7 +56,7 @@ app.post('/forward-email', handle(async (req, res) => {
 }))
 
 app.post('/mail', handle(async (req, res) => {
-  const { token, from, to, subject, html } = request.body
+  const { token, from, to, subject, html } = req.body
 
   if(token !== SMTP_SECRET_TOKEN) {
     throw new Error('Invalid token')
