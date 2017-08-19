@@ -4,11 +4,11 @@ const bodyParser = require('body-parser')
 const { decode } = require('base64-arraybuffer')
 const app = express()
 
-const { NODE_ENV = 'development' } = process.env
+const { NODE_ENV = 'development', PORT } = process.env
 
 const config = {
   development: { port: 3000 },
-  production: { port: 80 }
+  production: { port: PORT }
 }
 
 const { port } = config[NODE_ENV]
