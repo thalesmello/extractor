@@ -1,0 +1,22 @@
+{
+  "name": "extractor",
+  "version": "1.0.0",
+  "description": "Extracts information from a handful of documents and converts to json",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Thales Mello",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "get-emails": "^2.0.0",
+    "get-urls": "^7.0.0",
+    "is-email": "^1.0.0",
+    "lodash": "^4.17.4",
+    "pdf2text": "^1.1.0",
+    "remove-accents": "^0.4.1",
+    "remove-punctuation": "0.0.4",
+    "url-regex": "^4.1.1"
+  }
+}
