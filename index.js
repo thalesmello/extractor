@@ -26,6 +26,7 @@ app.post('/process', handle(async (req, res) => {
 
 app.post('/forward-email', handle(async (req, res) => {
   const { content, file_name: filename } = req.body.attachments[0]
+  const { from } = req.body.envelope
   const [, filetype] = filename.split('.')
   const buffer = new Buffer(new Uint8Array(decode(content)))
   const data = await parseResume({ buffer, filetype })
@@ -46,7 +47,8 @@ app.post('/forward-email', handle(async (req, res) => {
     github,
     filetype,
     filename,
-    content
+    content,
+    from
   })
 
   res.send({ status: 'ok' })
