@@ -38,7 +38,7 @@ app.post('/forward-email', handle(async (req, res) => {
   const github = urls.find(url => /github/.test(url))
   const linkedin = urls.find(url => /linkedin/.test(url))
 
-  await axios.post('https://hackmundi.herokuapp.com/candidatos/', {
+  await axios.post('https://hackmundi.herokuapp.com/candidato/', {
     nome: name || `Candidato ${new Date()}`,
     tags,
     email,
